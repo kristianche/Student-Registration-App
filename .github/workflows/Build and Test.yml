@@ -1,0 +1,24 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout the repository
+    - uses: actions/checkout@v4
+    - name: Use Node.js version 20
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
+        cache: 'npm'
+    - name: Start the app
+    - run: npm run start
+    - name: Run integration tests
+    - run: npm test
